@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FirebaseAPPAuth</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">INGRESAR</string>
+    <string name="register_button">REGISTRAR</string>
+    <string name="logout_button">CERRAR SESION</string>
+    <string name="login_title">Login con firebase</string>
+</resources>
