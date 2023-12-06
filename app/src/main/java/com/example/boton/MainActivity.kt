@@ -7,11 +7,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.AuthResult
 import com.google.android.gms.tasks.Task
-
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
     }
-
+    @Suppress("UNUSED_PARAMETER")
     fun registerUser(view: View) {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
+    @Suppress("UNUSED_PARAMETER")
     fun loginUser(view: View) {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
@@ -67,6 +66,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun resetUI() {
+        emailEditText.text.clear()
+        passwordEditText.text.clear()
+    }
+
+    private fun initializeViews() {
+        emailEditText = findViewById(R.id.emailEditText)
+        passwordEditText = findViewById(R.id.passwordEditText)
+    }
+
     private fun updateUI(email: String?) {
         if (email != null) {
             // Switch to logged in UI
@@ -76,10 +85,12 @@ class MainActivity : AppCompatActivity() {
                 auth.signOut()
                 // Switch back to login UI
                 setContentView(R.layout.activity_main)
+                initializeViews()
             }
         } else {
             // Stay at login UI and show error message
             Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+            resetUI()
         }
     }
 }
